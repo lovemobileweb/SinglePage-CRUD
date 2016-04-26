@@ -1,0 +1,38 @@
+﻿@if (ViewBag.Title == "Analysts")
+{
+    @RenderBody()
+}
+else
+{
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>@ViewBag.Title</title>
+        <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/jquery-ui-1.10.3.custom.min.css")" rel="stylesheet" type="text/css" />
+        <link href="@Url.Content("~/Content/all.min.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Scripts/jquery-2.0.0.min.js")" type="text/javascript"></script>
+    </head>
+    <body>
+        @if (ViewBag.Title != "Edit_Invalid")
+        {
+            <div class="page">
+                <div id="header">
+                    <div id="title">
+                        <h1>Single Page</h1>
+                    </div>
+                </div>
+                <div id="pricetarget">
+                    @RenderBody()
+                </div>
+                <div id="footer">
+                </div>
+            </div>
+        }
+        else
+        {
+            @RenderBody()
+        }
+    </body>
+    </html>
+}

@@ -1,0 +1,140 @@
+﻿@model SinglePage.Models.PriceTarget
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@Html.ValidationSummary(true)
+<fieldset>
+
+    <legend>PriceTarget</legend>
+
+    <div class="detail-fields-group">
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.QA_Id)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.QA_Id, null, "QA_Id")
+                @Html.ValidationMessageFor(model => Model.QA_Id)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.AsofDate)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.AsofDate, null, "AsofDate")
+                @Html.ValidationMessageFor(model => Model.AsofDate)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.PT_Period)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.PT_Period, null, "PT_Period")
+                @Html.ValidationMessageFor(model => Model.PT_Period)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.PriceTarget1)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.PriceTarget1, null, "PriceTarget1")
+                @Html.ValidationMessageFor(model => Model.PriceTarget1)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.DownsidePT)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.DownsidePT, null, "DownsidePT")
+                @Html.ValidationMessageFor(model => Model.DownsidePT)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.BullPT)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.BullPT, null, "BullPT")
+                @Html.ValidationMessageFor(model => Model.BullPT)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.BearPT)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.BearPT, null, "BearPT")
+                @Html.ValidationMessageFor(model => Model.BearPT)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.CoveredBy)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.CoveredBy, null, "CoveredBy")
+                @Html.ValidationMessageFor(model => Model.CoveredBy)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.PT_Note)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.PT_Note, null, "PT_Note")
+                @Html.ValidationMessageFor(model => Model.PT_Note)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.CreatedOn)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.CreatedOn, null, "CreatedOn")
+                @Html.ValidationMessageFor(model => Model.CreatedOn)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.CreatedBy)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.CreatedBy, null, "CreatedBy")
+                @Html.ValidationMessageFor(model => Model.CreatedBy)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.ModifiedOn)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.ModifiedOn, null, "ModifiedOn")
+                @Html.ValidationMessageFor(model => Model.ModifiedOn)
+            </div>
+        </div>
+        <div class="detail-field-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => Model.ModifiedBy)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => Model.ModifiedBy, null, "ModifiedBy")
+                @Html.ValidationMessageFor(model => Model.ModifiedBy)
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.Hidden("Id", Model.Id)
+        <input class="detail-save-btn" type="submit" value="Save" />
+    </div>
+</fieldset>

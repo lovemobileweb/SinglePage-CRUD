@@ -1,0 +1,171 @@
+﻿@model PagedList.IPagedList<SinglePage.Models.PriceTarget>
+
+@{
+    ViewBag.Title = "PriceTargets";
+}
+
+<h2>PriceTargets</h2>
+
+<script src="@Url.Content("~/Scripts/jquery-2.0.0.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.10.3.custom.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/myscript.js")" type="text/javascript"></script>
+
+<div class="search-form">
+@using (Html.BeginForm("Index", "PriceTarget"))
+{
+    <div class="input-group search-group right-align">
+        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control input-sm" })
+        <span class="input-group-addon button-pointer from-btn-search">&nbsp;<i class="glyphicon glyphicon-search"></i>&nbsp;</span>
+    </div>
+    <input type="submit" value="Search" style="display:none;" />
+    @Html.ActionLink("New", "Create", "PriceTarget", new object { }, new { @class = "create-btn left-align" })
+}
+</div>
+<table id="example" class="table">
+    <thead>
+        <th></th>
+        <th>
+            @Html.ActionLink("QA_Id", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("AsofDate", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("PT_Period", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("PriceTarget1", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("DownsidePT", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("BullPT", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("BearPT", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("CoveredBy", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("PT_Note", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("CreatedOn", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("CreatedBy", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("ModifiedOn", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("ModifiedBy", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+    </thead>
+    <tbody>
+    @{ int i = 0; }
+    @foreach (var item in Model)
+    {
+        <tr @if ((i % 2) == 0) { @Html.Raw("class=\"odd\"") } else { @Html.Raw("class=\"even\"") }>
+            <td>
+                <p class="text-center">
+                    <span class="input-group-sm button-pointer details-control"><i class="glyphicon glyphicon-pencil"></i></span>&nbsp;&nbsp;
+                    <span class="input-group-sm button-pointer delete-control"><i class="glyphicon glyphicon-remove"></i></span>
+                </p>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QA_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AsofDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PT_Period)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceTarget1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DownsidePT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BullPT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BearPT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoveredBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PT_Note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedBy)
+            </td>
+        </tr>
+            <tr class="detail detail-hidden">
+                <td colspan="14">
+                    @using (Html.BeginForm("Edit", "PriceTarget"))
+                    {
+                        @Html.ValidationSummary(true)
+                        <div id="Details">
+                            @Html.Partial("Edit", item)
+                        </div>
+                    }
+                </td>
+            </tr>
+        i++;
+    }
+    @if (i == 0)
+    {
+        <tr class="odd noitem">
+            <td colspan="14">
+                There is no items!
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<div class="right-align">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    of @Model.PageCount
+    &nbsp;
+    @if (Model.HasPreviousPage)
+{
+    @Html.ActionLink("<<", "Index", new { page = 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "page-enabled" })
+        @Html.Raw("&nbsp;");
+    @Html.ActionLink("<", "Index", new { page = Model.PageNumber - 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "page-enabled" })
+    }
+    else
+    {
+        <span class="page-disabled">&lt;&lt;</span>
+        @Html.Raw("&nbsp;");
+        <span class="page-disabled">&lt;</span>
+    }
+    &nbsp;
+    @if (Model.HasNextPage)
+        {
+        @Html.ActionLink(">", "Index", new { page = Model.PageNumber + 1, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "page-enabled" })
+        @Html.Raw("&nbsp;");
+        @Html.ActionLink(">>", "Index", new { page = Model.PageCount, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "page-enabled" })
+    }
+    else
+    {
+        <span class="page_disabled">&gt;&gt;</span>
+        @Html.Raw("&nbsp;");
+        <span class="page_disabled">&gt;</span>
+    }
+</div>

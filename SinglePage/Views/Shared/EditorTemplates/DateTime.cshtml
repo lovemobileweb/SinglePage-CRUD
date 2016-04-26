@@ -1,0 +1,28 @@
+﻿@model Nullable<DateTime>
+
+@{ 
+    var css = ViewData["class"] ?? "";
+    var readOnly = ViewData["readonly"] ?? "";
+    if (ViewData.TemplateInfo != null && Model != DateTime.MinValue)
+    {
+        if (readOnly != "")
+        {
+            @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new { @readonly = readOnly, @class = css });
+        }
+        else
+        {
+            @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, new { @class = css });
+        }
+    }
+    else
+    {
+        if (readOnly != "")
+        {
+            @Html.TextBox("", "", new { @readonly = readOnly, @class = css });
+        }
+        else
+        {
+            @Html.TextBox("", "", new { @class = css });
+        }
+    }
+}

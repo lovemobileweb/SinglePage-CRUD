@@ -1,0 +1,14 @@
+﻿@model PagedList.IPagedList<SinglePage.Models.Analyst>
+
+@{
+    ViewBag.Title = "Analysts";
+}
+
+@{ string sep = ""; }
+@Html.Raw("{\"components\":[")
+@foreach (var item in Model)
+{
+    @Html.Raw(sep + "{\"n\":\"" + item.analyst_name + "\",\"v\":\"\"}")
+    sep = ",";
+}
+@Html.Raw("]}")
